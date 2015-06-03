@@ -1,1 +1,74 @@
-Aplicación para descargar tweets desde la API de Twitter.
+package twitterjava;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import twitter4j.*;
+import twitterJava.Autorizacion;
+
+public class twitterJava{
+    
+    public static void main(String[] args) throws IOException{
+        try{
+            /*
+            if (args.length < 1){
+            System.out.println("java twitter4j.examples.search.SearchTweets [query]");
+            System.exit(-1);
+            }*/
+            Autorizacion autorization = new Autorizacion();
+            Twitter twitter=autorization.getInstance();
+            
+             try {
+            Query query = new Query("=)");
+            QueryResult result;
+            do {
+                result = twitter.search(query);
+                List<Status> tweets = result.getTweets();
+                for (Status tweet : tweets) {
+                    System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
+                }
+            } while ((query = result.nextQuery()) != null);
+            System.exit(0);
+        } catch (TwitterException te) {
+            te.printStackTrace();
+            System.out.println("Failed to search tweets: " + te.getMessage());
+            System.exit(-1);
+        }
+            
+            /*for(int i=0;i<tweets.size();i++){
+                Status tweet=tweets.get(i);
+                System.out.println(tweet.getText());
+            }*/
+            
+            
+//            Twitter twitter = new TwitterFactory().getInstance();
+//            
+//            try{
+//                Query query = new Query(":)");
+//                QueryResult result;
+//                
+//                do{
+//                    result = twitter.search(query);
+//                    List <Tweet> tweets = result.getTweets();
+//                    
+//                    for (Tweet tweet : tweets){
+//                        String user=tweet.getFromUser();
+//                        String content=tweet.getText();
+//                        System.out.println(content);
+//                        //System.out.println("@" + tweet.getUser().getScreenName() + " - " + tweet.getText());
+//                    }
+//                }while ((query.getQuery()) != null);
+//                System.exit(0);
+//            }
+//            catch (TwitterException te){
+//                te.printStackTrace();
+//                System.out.println("Failed to search tweets: " + te.getMessage());
+//                System.exit(-1);
+//            }
+        }
+        catch (TwitterException ex){
+            Logger.getLogger(twitterJava.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}
