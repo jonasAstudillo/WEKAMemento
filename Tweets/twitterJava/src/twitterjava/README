@@ -1,0 +1,5 @@
+- Se debe descargar la biblioteca Twitter4j haciendo clic en twitter4j-core-4.0.3.zip desde la página http://twitter4j.org/en/index.html.
+- Luego, dentro de este archivo, se debe extraer desde la carpeta lib el archivo twitter4j-core-4.0.3.jar.
+- Dentro del proyecto, se debe hacer clic derecho en Libraries y luego AddJAR/Folder y añadir el archivo extraído anteriormente.
+- En la clase Autorizacion.java se deben escribir las claves personales dadas por la API de Twitter.
+- En la clase twitterJava.java se debe establecer la consulta y editar los datos de las sentencias de consulta si es que se necesita.
